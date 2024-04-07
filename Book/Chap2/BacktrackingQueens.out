@@ -1,0 +1,161 @@
+	.section	__TEXT,__text,regular,pure_instructions
+	.build_version macos, 14, 0	sdk_version 14, 2
+	.globl	__Z6searchi                     ; -- Begin function _Z6searchi
+	.p2align	2
+__Z6searchi:                            ; @_Z6searchi
+	.cfi_startproc
+; %bb.0:
+	sub	sp, sp, #48
+	.cfi_def_cfa_offset 48
+	stp	x29, x30, [sp, #32]             ; 16-byte Folded Spill
+	add	x29, sp, #32
+	.cfi_def_cfa w29, 16
+	.cfi_offset w30, -8
+	.cfi_offset w29, -16
+	stur	w0, [x29, #-4]
+	ldur	w8, [x29, #-4]
+	subs	w8, w8, #8
+	cset	w8, ne
+	tbnz	w8, #0, LBB0_2
+	b	LBB0_1
+LBB0_1:
+	adrp	x9, _cnt@PAGE
+	ldr	w8, [x9, _cnt@PAGEOFF]
+	add	w8, w8, #1
+	str	w8, [x9, _cnt@PAGEOFF]
+	b	LBB0_10
+LBB0_2:
+	stur	wzr, [x29, #-8]
+	b	LBB0_3
+LBB0_3:                                 ; =>This Inner Loop Header: Depth=1
+	ldur	w8, [x29, #-8]
+	subs	w8, w8, #8
+	cset	w8, ge
+	tbnz	w8, #0, LBB0_10
+	b	LBB0_4
+LBB0_4:                                 ;   in Loop: Header=BB0_3 Depth=1
+	ldursw	x9, [x29, #-8]
+	adrp	x8, _col@PAGE
+	add	x8, x8, _col@PAGEOFF
+	add	x8, x8, x9
+	ldrb	w8, [x8]
+	tbnz	w8, #0, LBB0_7
+	b	LBB0_5
+LBB0_5:                                 ;   in Loop: Header=BB0_3 Depth=1
+	ldur	w8, [x29, #-8]
+	ldur	w9, [x29, #-4]
+	add	w9, w8, w9
+	adrp	x8, _diag1@PAGE
+	add	x8, x8, _diag1@PAGEOFF
+	add	x8, x8, w9, sxtw
+	ldrb	w8, [x8]
+	tbnz	w8, #0, LBB0_7
+	b	LBB0_6
+LBB0_6:                                 ;   in Loop: Header=BB0_3 Depth=1
+	ldur	w8, [x29, #-8]
+	ldur	w9, [x29, #-4]
+	subs	w8, w8, w9
+	add	w8, w8, #8
+	subs	w9, w8, #1
+	adrp	x8, _diag2@PAGE
+	add	x8, x8, _diag2@PAGEOFF
+	add	x8, x8, w9, sxtw
+	ldrb	w8, [x8]
+	tbz	w8, #0, LBB0_8
+	b	LBB0_7
+LBB0_7:                                 ;   in Loop: Header=BB0_3 Depth=1
+	b	LBB0_9
+LBB0_8:                                 ;   in Loop: Header=BB0_3 Depth=1
+	ldur	w8, [x29, #-8]
+	ldur	w9, [x29, #-4]
+	subs	w8, w8, w9
+	add	w8, w8, #8
+	subs	w9, w8, #1
+	adrp	x8, _diag2@PAGE
+	add	x8, x8, _diag2@PAGEOFF
+	str	x8, [sp]                        ; 8-byte Folded Spill
+	add	x9, x8, w9, sxtw
+	mov	w8, #1
+	strb	w8, [x9]
+	ldur	w9, [x29, #-8]
+	ldur	w10, [x29, #-4]
+	add	w10, w9, w10
+	adrp	x9, _diag1@PAGE
+	add	x9, x9, _diag1@PAGEOFF
+	str	x9, [sp, #8]                    ; 8-byte Folded Spill
+	add	x9, x9, w10, sxtw
+	strb	w8, [x9]
+	ldursw	x10, [x29, #-8]
+	adrp	x9, _col@PAGE
+	add	x9, x9, _col@PAGEOFF
+	str	x9, [sp, #16]                   ; 8-byte Folded Spill
+	add	x9, x9, x10
+	strb	w8, [x9]
+	ldur	w8, [x29, #-4]
+	add	w0, w8, #1
+	bl	__Z6searchi
+	ldr	x10, [sp]                       ; 8-byte Folded Reload
+	ldr	x9, [sp, #8]                    ; 8-byte Folded Reload
+	ldr	x8, [sp, #16]                   ; 8-byte Folded Reload
+	ldur	w11, [x29, #-8]
+	ldur	w12, [x29, #-4]
+	subs	w11, w11, w12
+	add	w11, w11, #8
+	subs	w11, w11, #1
+	add	x10, x10, w11, sxtw
+	strb	wzr, [x10]
+	ldur	w10, [x29, #-8]
+	ldur	w11, [x29, #-4]
+	add	w10, w10, w11
+	add	x9, x9, w10, sxtw
+	strb	wzr, [x9]
+	ldursw	x9, [x29, #-8]
+	add	x8, x8, x9
+	strb	wzr, [x8]
+	b	LBB0_9
+LBB0_9:                                 ;   in Loop: Header=BB0_3 Depth=1
+	ldur	w8, [x29, #-8]
+	add	w8, w8, #1
+	stur	w8, [x29, #-8]
+	b	LBB0_3
+LBB0_10:
+	ldp	x29, x30, [sp, #32]             ; 16-byte Folded Reload
+	add	sp, sp, #48
+	ret
+	.cfi_endproc
+                                        ; -- End function
+	.globl	_main                           ; -- Begin function main
+	.p2align	2
+_main:                                  ; @main
+	.cfi_startproc
+; %bb.0:
+	sub	sp, sp, #32
+	.cfi_def_cfa_offset 32
+	stp	x29, x30, [sp, #16]             ; 16-byte Folded Spill
+	add	x29, sp, #16
+	.cfi_def_cfa w29, 16
+	.cfi_offset w30, -8
+	.cfi_offset w29, -16
+	mov	w0, #0
+	stur	w0, [x29, #-4]                  ; 4-byte Folded Spill
+	bl	__Z6searchi
+	adrp	x8, _cnt@PAGE
+	ldr	w1, [x8, _cnt@PAGEOFF]
+	adrp	x0, __ZNSt3__14coutE@GOTPAGE
+	ldr	x0, [x0, __ZNSt3__14coutE@GOTPAGEOFF]
+	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEi
+	ldur	w0, [x29, #-4]                  ; 4-byte Folded Reload
+	ldp	x29, x30, [sp, #16]             ; 16-byte Folded Reload
+	add	sp, sp, #32
+	ret
+	.cfi_endproc
+                                        ; -- End function
+	.globl	_cnt                            ; @cnt
+.zerofill __DATA,__common,_cnt,4,2
+	.globl	_col                            ; @col
+.zerofill __DATA,__common,_col,9,0
+	.globl	_diag1                          ; @diag1
+.zerofill __DATA,__common,_diag1,9,0
+	.globl	_diag2                          ; @diag2
+.zerofill __DATA,__common,_diag2,9,0
+.subsections_via_symbols
